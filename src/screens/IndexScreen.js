@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'reac
 import { Context } from '../context/BlogContext';
 
 import { FontAwesome } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 
 
@@ -20,7 +22,7 @@ const IndexScreen = ({ navigation }) => {
       keyExtractor={(blogPost) => blogPost.title}
       renderItem={({ item }) => {
         return (
-          <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+          <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id })}>
             <View style={styles.row}>
               <Text style={styles.title}>{item.title} -- ID: {item.id}</Text>
               <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
@@ -32,6 +34,19 @@ const IndexScreen = ({ navigation }) => {
       }}
     />
   </View>
+};
+
+IndexScreen.navigationOptions = ({ navigation }) => {
+  return {
+    //headerRight: <Feather name="plus" size={30} color="black" />
+    // headerRight: <Entypo name="add-to-list" size={24} color="black" />
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <Feather name="plus" size={30} margin={20} color="black" />
+      </TouchableOpacity>
+    ),
+
+  };
 };
 
 const styles = StyleSheet.create({
