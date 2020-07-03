@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { BlogProvider } from './src/context/BlogContext';
+import { Provider } from './src/context/BlogContext';
 
 import IndexScreen from './src/screens/IndexScreen';
 
@@ -25,9 +25,9 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 export default () => {
-  return <BlogProvider>
+  return <Provider>
     <App />
-  </BlogProvider>;
+  </Provider>;
 };
 
 
