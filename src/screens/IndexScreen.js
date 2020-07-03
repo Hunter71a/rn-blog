@@ -6,6 +6,7 @@ import { Context } from '../context/BlogContext';
 import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import ButtonStyle from '../../src/components/ButtonStyle';
 
 
 
