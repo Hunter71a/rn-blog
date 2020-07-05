@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
-
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Context } from '../context/BlogContext';
-
 import { FontAwesome } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import ButtonStyle from '../../src/components/ButtonStyle';
+
 
 
 
@@ -15,6 +12,13 @@ const IndexScreen = ({ navigation }) => {
 
   useEffect(() => {
     getBlogPosts();
+
+    const listener = navigation.addListener('didFocus', () => {
+      getBlogPosts();
+    });
+    return () => {
+      listener.remove();
+    }; 
   }, []);
 
 

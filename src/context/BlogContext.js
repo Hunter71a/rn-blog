@@ -6,7 +6,7 @@ import jsonServer from '../api/jsonServer';
 
 const blogReducer = (state, action) => {
   switch (action.type) {
-    case 'get_blogpost':
+    case 'get_blogposts':
       return action.payload;
     case 'edit_blogpost':
       return state.map((blogPost) => {
@@ -43,9 +43,10 @@ const getBlogPosts = dispatch => {
 };
 
 const addBlogPost = dispatch => {
-  return (title, content, callback) => {
-    dispatch({ type: 'add_blogpost', payload: { title, content } });
-    callback();
+  return async (title, content, callback) => {
+    await jsonServer.post('/blogposts', {title: title, content: content})
+  //  dispatch({ type: 'add_blogpost', payload: { title, content } });
+  if (callback) callback();
   };
 };
 
@@ -69,20 +70,3 @@ export const { Context, Provider } = createDataContext(
   []
   // [{ title: 'Chump POST', content: 'Shut up, Chump!', id: -1 }]  move dummy data to database
 );
-
-// export const BlogProvider = ({ children }) => {
-//   const [blogPosts, dispatch] = useReducer(blogReducer, []);
-
-
-
-  // [
-  //   {title: 'Blog Post #1'},
-  //   {title: 'Blog Post # 2'}
-  // ];
-
-//   return <BlogContext.Provider value={{ data: blogPosts, addBlogPost: addBlogPost }}>
-//     {children}
-//   </BlogContext.Provider>
-// };
-
-// export default BlogContext;
