@@ -2,16 +2,19 @@ import React, { useContext, useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Button } from 'react-native';
 
 import { Context as blogContext } from '../context/BlogContext';
+import ButtonStyle from '../components/ButtonStyle';
 
 const CreateScreen = ({ navigation }) => {
-  const [title, setTitle] = useState('title');
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const { addBlogPost } = useContext(blogContext);
 
   const { state } = useContext(blogContext);
 
-  const blogPost = state.find(
-    blog => blog.id === navigation.getParam('id')
-  );
+  // const blogPost = state.find(
+  //   blog => blog.id === navigation.getParam('id')
+  // );
 
   //navigation.getParam('id');
 
@@ -19,12 +22,19 @@ const CreateScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Create New Blog</Text>
       <Text style={styles.label}>Enter Title:   </Text>
-      <TextInput style={styles.input} value={title} onChangeText={(text) => {setTitle(text)}} />
+      <TextInput style={styles.input} value={title} onChangeText={(text) => { setTitle(text) }} />
       <Text style={styles.label}>Enter Content:   </Text>
-      <TextInput style={styles.input} value={content} onChangeText={ blahblahblah => setContent(blahblahblah)} />
+      <TextInput style={styles.input} value={content} onChangeText={blahblahblah => setContent(blahblahblah)} />
       <Text>Title:    {title}</Text>
       <Text>Content:   {content}</Text>
-      <Button title='Add Blog Post' />
+      <ButtonStyle
+        title='Add Blog Post'
+        pressed={() => {
+          addBlogPost(title, content, () => {
+            navigation.navigate('Index');
+          });
+        }}
+      />
     </View>
   );
 };

@@ -11,16 +11,17 @@ import ButtonStyle from '../../src/components/ButtonStyle';
 
 
 const IndexScreen = ({ navigation }) => {
-  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+  const { state, deleteBlogPost } = useContext(Context);
 
-  return <View>
-    <Button
+  return <View style={styles.container}>
+    <Text style={styles.title}>Blog List</Text>
+    {/* <ButtonStyle
       title='Add New Blog'
-      onPress={addBlogPost}
-    />
+      pressed={addBlogPost}
+    /> */}
     <FlatList
       data={state}
-      keyExtractor={(blogPost) => blogPost.title}
+      keyExtractor={(blogPost) => blogPost.id.toString()}
       renderItem={({ item }) => {
         return (
           <TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id })}>
@@ -43,7 +44,9 @@ IndexScreen.navigationOptions = ({ navigation }) => {
     // headerRight: <Entypo name="add-to-list" size={24} color="black" />
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Create')}>
-        <Feather name="plus" size={30} margin={20} color="black" />
+        <View style={styles.addButton}>
+          <Feather name="plus" size={30} margin={20} color="black" />
+        </View>
       </TouchableOpacity>
     ),
 
@@ -51,6 +54,10 @@ IndexScreen.navigationOptions = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -60,8 +67,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: 'grey',
   },
+  add: {
+    height: 20,
+    width: 40,
+    margin: 20,
+  },
   title: {
-    fontSize: 18,
+    fontSize: 28,
+    alignSelf: 'center',
+    fontStyle: 'italic',
 
   },
   icon: {
