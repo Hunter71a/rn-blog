@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TextInput, Button } from 'react-native';
 
 import { Context as blogContext } from '../context/BlogContext';
 import ButtonStyle from '../components/ButtonStyle';
+import BlogPostForm from '../components/BlogPostForm';
 
 const CreateScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
@@ -12,32 +13,42 @@ const CreateScreen = ({ navigation }) => {
 
   const { state } = useContext(blogContext);
 
-  // const blogPost = state.find(
-  //   blog => blog.id === navigation.getParam('id')
-  // );
-
-  //navigation.getParam('id');
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Create New Blog</Text>
-      <Text style={styles.label}>Enter Title:   </Text>
-      <TextInput style={styles.input} value={title} onChangeText={(text) => { setTitle(text) }} />
-      <Text style={styles.label}>Enter Content:   </Text>
-      <TextInput style={styles.input} value={content} onChangeText={blahblahblah => setContent(blahblahblah)} />
-      <Text>Title:    {title}</Text>
-      <Text>Content:   {content}</Text>
-      <ButtonStyle
-        title='Add Blog Post'
-        pressed={() => {
-          addBlogPost(title, content, () => {
-            navigation.navigate('Index');
-          });
-        }}
-      />
-    </View>
+    <BlogPostForm
+      onSubmit={(title, content) => {
+        addBlogPost(title, content, () => navigation.navigate('Index'))
+      }}
+    />
   );
-};
+}
+
+// const blogPost = state.find(
+//   blog => blog.id === navigation.getParam('id')
+// );
+
+//navigation.getParam('id');
+
+// REPLACE WITH INPUT FORM COMPONENT 
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.title}>Create New Blog</Text>
+//       <Text style={styles.label}>Enter Title:   </Text>
+//       <TextInput style={styles.input} value={title} onChangeText={(text) => { setTitle(text) }} />
+//       <Text style={styles.label}>Enter Content:   </Text>
+//       <TextInput style={styles.input} value={content} onChangeText={blahblahblah => setContent(blahblahblah)} />
+//       <Text>Title:    {title}</Text>
+//       <Text>Content:   {content}</Text>
+//       <ButtonStyle
+//         title='Add Blog Post'
+//         pressed={() => {
+//           addBlogPost(title, content, () => {
+//             navigation.navigate('Index');
+//           });
+//         }}
+//       />
+//     </View>
+//   );
+// };
 
 const styles = StyleSheet.create({
   container: {
