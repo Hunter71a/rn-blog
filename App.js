@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
@@ -47,12 +46,3 @@ const styles = StyleSheet.create({
 });
 
 
-
-// 
-// return {
-//   headerRight: () => (
-//     <TouchableOpacity onPress={() => navigation.navigate('Create')}>
-//       <Feather name="plus" size={30} />
-//     </TouchableOpacity>
-//   ),
-// };

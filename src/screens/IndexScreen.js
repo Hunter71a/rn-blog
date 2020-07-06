@@ -10,16 +10,16 @@ import { Feather } from '@expo/vector-icons';
 const IndexScreen = ({ navigation }) => {
   const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
 
-  useEffect(() => {
-    getBlogPosts();
-
-    const listener = navigation.addListener('didFocus', () => {
-      getBlogPosts();
-    });
-    return () => {
-      listener.remove();
-    }; 
-  }, []);
+  // useEffect(() => {
+  //   getBlogPosts();
+//
+  //   const listener = navigation.addListener('didFocus', () => {
+  //     getBlogPosts();
+  //   });
+  //   return () => {
+  //     listener.remove();
+  //   }; 
+  // }, []);
 
 
   return <View style={styles.container}>
@@ -64,9 +64,8 @@ IndexScreen.navigationOptions = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  
-  },
+    flex: 1,  
+  },  
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -85,12 +84,10 @@ const styles = StyleSheet.create({
     fontSize: 28,
     alignSelf: 'center',
     fontStyle: 'italic',
-
   },
   icon: {
     fontSize: 28,
   }
-
 });
 
 export default IndexScreen;
