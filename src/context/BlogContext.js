@@ -70,5 +70,5 @@ export const { Context, Provider } = createDataContext(
   blogReducer,
   { addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
   []
-  // [{ title: 'Chump POST', content: 'Shut up, Chump!', id: -1 }]  move dummy data to database
+  // [{ title: 'POST', content: 'Test Message 1!', id: -1 }]  move dummy data to database
 );
